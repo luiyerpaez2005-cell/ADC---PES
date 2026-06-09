@@ -5,7 +5,6 @@ const assets = [
   'manifest.json'
 ];
 
-// 1. Guardar los archivos en la memoria del teléfono al instalar
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -15,7 +14,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// 2. Limpiar versiones viejas si haces cambios en el futuro
+
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => {
@@ -30,7 +29,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// 3. LA MAGIA: Si no hay internet, carga el sistema desde el teléfono
+
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
